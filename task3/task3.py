@@ -37,13 +37,23 @@ class Barrel():
         else:
             self.volume_no_scoop += 1
             self.error += 1
-try:
-    filedict, timestart, timefinish = input().split(' ')
 
-except Exception:
+if __name__ == "__main__":
     usage = 'Неверно введены аргументы!\nПример правильного ввода: ./log.log 2020-01-01T12:00:00 2021-01-01T13:00:00'
-    print(usage)
-    sys.exit()
+    try:
+        if len (sys.argv) == 4:
+            filedict = sys.argv[1]
+            timestart = sys.argv[2]
+            timefinish = sys.argv[3]
+        else:
+            print(usage)
+            sys.exit(1)
+    except Exception:
+        print(usage)
+        sys.exit (1)
+
+
+
 
 timestart=timestart.replace('T', ' ')
 timefinish=timefinish.replace('T', ' ')
@@ -105,3 +115,5 @@ else:
 with open('report.csv',  "w", encoding='utf-8', newline="") as file:
     writer = csv.writer(file)
     writer.writerows(report)
+
+print('Результат записан в файл report.csv')
