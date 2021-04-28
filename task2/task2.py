@@ -1,11 +1,13 @@
 from math import sqrt
+import sys
 
 def point_in_line(x, y, z): #проверка принадлежности точки пересения линии и сферы отрезку
     if px <= x <=vx or  vx <= x <=px and py <= y <=vy or  vy <= y <=py and pz <= z <=vz or  vz <= z <=pz:
         print(x, y, z)
 
+if __name__ == "__main__":
+    filedict = sys.argv[1]
 
-filedict= input() #считывание имени файла из командной строки
 
 with open(filedict) as f: #парсим значения из файла
     for line in f:
