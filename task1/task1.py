@@ -1,17 +1,4 @@
-def main():
-    usage = '''Аргументы переданы некорректно!
-В функцию нужно передать число, систему исчисления, которую хотите получить, систему исчисления передаваемого числа(по умолчанию десятичная).
-Все аргументы должны быть в формате string.'''
-    try:
-        numer, baseto, *base = input().split()
-        base = base[0] if base else '0123456789'
-        for i in numer:
-            if i not in base:
-                print(usage)
-            break
-        print(itoBase(numer, baseto, base))
-    except Exception:
-        print(usage)
+import sys
 
 def itoBase(nb, baseSrc, baseDst):
     if baseDst == '0123456789': #если число подано в десятичной системе
@@ -32,5 +19,28 @@ def itoBase(nb, baseSrc, baseDst):
         numb = numb // basenumb
     return res[::-1]
 
-
-main()
+if __name__ == "__main__":
+    usage = '''Аргументы переданы некорректно!
+    В функцию нужно передать число, систему исчисления, которую хотите получить, систему исчисления передаваемого числа(по умолчанию десятичная).
+    Все аргументы должны быть в формате string.'''
+    if len (sys.argv) == 3:
+        numer = sys.argv[1]
+        baseto = sys.argv[2]
+        base = '0123456789'
+        for i in numer:
+            if i not in base:
+                print(usage)
+                sys.exit(1)
+        print(itoBase(numer, baseto, base))
+    elif len (sys.argv) == 4:
+        numer = sys.argv[1]
+        baseto = sys.argv[2]
+        base = sys.argv[3]
+        for i in numer:
+            if i not in base:
+                print(usage)
+                sys.exit(1)
+        print(itoBase(numer, baseto, base))
+    else:
+        print(usage)
+        sys.exit (1)
