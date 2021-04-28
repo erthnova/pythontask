@@ -1,3 +1,5 @@
+import sys
+
 def del_th(strsp): #выделяем в список все значения из второй строки, которые не *
     lists = list(strsp)
     listsp = []
@@ -37,5 +39,7 @@ def compare_str(str1, str2):
         print('KO')
         return
 
-string1, string2 = input().split(' ') #считываем переменные
-compare_str(string1, string2)
+if __name__ == "__main__":
+    string1 = sys.argv[1]
+    string2 = sys.argv[2]
+    compare_str(string1,string2)
